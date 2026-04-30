@@ -155,4 +155,3 @@ void reverse()
             currentNode = currentNode->prev;
         }
     }
-
