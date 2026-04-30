@@ -49,4 +49,67 @@ if (START == NULL || nim <= START->noMhs)
             return;
         }
 
-     
+       Node *current = START;
+
+        while (current->next != NULL && current->next->noMhs < nim)
+        {
+            current = current->next;
+        }
+
+        if (current->next != NULL && current->next->noMhs == nim)
+        {
+            cout << "Duplicate roll numbers not allowed" << endl;
+            return;
+        }
+
+        newNode->next = current->next;
+
+        if (current->next != NULL)
+            current->next->prev = newNode;
+
+        newNode->prev = current;
+        current->next = newNode;
+    }
+
+    void hapus()
+    {
+        if (START == NULL)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        int rollNo;
+        cout << "Enter the roll number of the student whose record is to be deleted: ";
+        cin >> rollNo;
+
+        Node *current = START;
+
+        while (current != NULL && current->noMhs != rollNo)
+            current = current->next;
+
+        if (current == NULL)
+        {
+            cout << "Record not found" << endl;
+            return;
+        }
+
+        if (current == START)
+        {
+            START = current->next;
+
+            if (START != NULL)
+                START->prev = NULL;
+        }
+        else
+        {
+            current->prev->next = current->next;
+
+            if (current->next != NULL)
+                current->next->prev = current->prev;
+        }
+
+        delete current;
+        cout << "Record with roll number " << rollNo << " deleted" << endl;
+    }
+
