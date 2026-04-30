@@ -155,3 +155,27 @@ void reverse()
             currentNode = currentNode->prev;
         }
     }
+
+        void searchData()
+    {
+        if (START == NULL)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        int rollNo;
+        cout << "Enter the roll number to search: ";
+        cin >> rollNo;
+
+        Node *current = START;
+
+        while (current != NULL && current->noMhs != rollNo)
+            current = current->next;
+
+        if (current == NULL)
+            cout << "Record not found" << endl;
+        else
+            cout << "Record found. Roll number: " << current->noMhs << endl;
+    }
+};
